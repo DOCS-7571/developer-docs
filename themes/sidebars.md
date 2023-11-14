@@ -29,6 +29,9 @@ Once you have the menu item name that you wish to manipulate, which in the examp
 
 {{% notice tip %}}
 The client area's sidebar menu system is defined in a tree structure. Each menu item has one parent item and can have many child items. To manipulate a menu item within a sidebar panel, you first need to retrieve the parent menu item, which in the case above is `Account`, followed by the `Account Details` menu item within it.
+
+These examples are for WHMCS 8.0 and newer. For WHMCS 7.10 and older, replace any references to `Account` with `My Account`.
+
 {{% /notice %}}
 
 ## Changing the Text Label of a Sidebar Item
@@ -44,7 +47,7 @@ use WHMCS\View\Menu\Item as MenuItem;
 
 add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
 {
-    $primarySidebar->getChild("My Account")
+    $primarySidebar->getChild("Account")
         ->getChild("Billing Information")
         ->setLabel("Custom Text Here");
 });
@@ -63,7 +66,7 @@ use WHMCS\View\Menu\Item as MenuItem;
 
 add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
 {
-    $primarySidebar->getChild('My Account')
+    $primarySidebar->getChild('Account')
         ->getChild('Billing Information')
         ->setUri('https://www.example.com/billingInfo');
 });
@@ -80,7 +83,7 @@ use WHMCS\View\Menu\Item as MenuItem;
 
 add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
 {
-    $primarySidebar->getChild('My Account')
+    $primarySidebar->getChild('Account')
         ->getChild('Billing Information')
         ->setOrder(25); // default menu items have orders 10, 20, 30, etc...
 });
@@ -90,13 +93,13 @@ The following helpers are also available:
 
 ```
 // Moves a menu item up one position
-$primaryNavbar->getChild('My Account')->getChild('Billing Information')->moveUp();
+$primaryNavbar->getChild('Account')->getChild('Billing Information')->moveUp();
 // Moves a menu item down one position
-$primaryNavbar->getChild('My Account')->getChild('Billing Information')->moveDown();
+$primaryNavbar->getChild('Account')->getChild('Billing Information')->moveDown();
 // Moves a menu item to the first position
-$primaryNavbar->getChild('My Account')->getChild('Billing Information')->moveToFront();
+$primaryNavbar->getChild('Account')->getChild('Billing Information')->moveToFront();
 // Moves a menu item to the last position
-$primaryNavbar->getChild('My Account')->getChild('Billing Information')->moveToBack();
+$primaryNavbar->getChild('Account')->getChild('Billing Information')->moveToBack();
 ```
 
 ## Adding an Additional Sidebar Menu Item
@@ -111,8 +114,8 @@ use WHMCS\View\Menu\Item as MenuItem;
 add_hook('ClientAreaPrimarySidebar', 1, function (MenuItem $primarySidebar)
 
 {
-    if (!is_null($primarySidebar->getChild('My Account'))) {
-        $primarySidebar->getChild('My Account')
+    if (!is_null($primarySidebar->getChild('Account'))) {
+        $primarySidebar->getChild('Account')
             ->addChild('Mailing List Subscription Prefs')
                 ->setLabel('Subscription Preferences')
                 ->setUri('subscriptionprefs.php')
@@ -132,7 +135,7 @@ use WHMCS\View\Menu\Item as MenuItem;
 
 add_hook('ClientAreaPrimarySidebar', 1, function(MenuItem $primarySidebar)
 {
-    $primarySidebar->getChild('My Account')
+    $primarySidebar->getChild('Account')
         ->removeChild('Billing Information');
 });
 ```
